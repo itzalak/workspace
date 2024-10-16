@@ -20,7 +20,7 @@ git clone https://github.com/itzalak/anvil.git
 
 ## Awesomewm
 
-Take look into [awesome readme](/linux/awesome/.config/awesome/README.md)
+Take look into [awesome readme](/awesome/.config/awesome/README.md)
 
 ## Configuration
 

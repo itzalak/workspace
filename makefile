@@ -100,16 +100,16 @@ endif
 	@$(call log, restow)
 
 .PHONY: restow-awesome
-restow-awesome:
+restow-awesome: restow
 	@$(call warn, awesome)
-	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil/linux --target=$(HOME) dotfiles
-	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil/linux --target=$(HOME) awesome
+	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) linux
+	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) awesome
 
 .PHONY: restow-qtile
 restow-qtile:
 	@$(call warn, qtile)
-	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil/linux --target=$(HOME) dotfiles
-	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil/linux --target=$(HOME) qtile
+	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) linux
+	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) qtile
 
 .PHONY: destow
 destow:
@@ -118,8 +118,17 @@ destow:
 	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) base
 ifeq ($(OS), Darwin)
 	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) macos
+else ifeq ($(OS), Linux)
+	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) linux
+	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) awesome
 endif
 	@$(call log, delete stow)
+
+.PHONY: ranger-submodules
+ranger-submodules:
+	@$(call warn, initialize submodules)
+	git submodule update --init "$(HOME)/foundry/anvil/base/.config/ranger/plugins/ranger-zoxide/"
+	git submodule update --init "$(HOME)/foundry/anvil/base/.config/ranger/plugins/ranger-devicons2/"
 
 ###############################################################################
 # Zimfw
