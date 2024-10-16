@@ -93,7 +93,7 @@ endif
 restow:
 	@$(call warn, restow)
 	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) neovim
-	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) base
+	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) terminal
 ifeq ($(OS), Darwin)
 	exec stow --restow --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) macos
 endif
@@ -115,7 +115,7 @@ restow-qtile:
 destow:
 	@$(call warn, delete stow)
 	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) neovim
-	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) base
+	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) terminal
 ifeq ($(OS), Darwin)
 	exec stow --delete --verbose --dir=$(HOME)/foundry/anvil --target=$(HOME) macos
 else ifeq ($(OS), Linux)
@@ -127,8 +127,7 @@ endif
 .PHONY: ranger-submodules
 ranger-submodules:
 	@$(call warn, initialize submodules)
-	git submodule update --init "$(HOME)/foundry/anvil/base/.config/ranger/plugins/ranger-zoxide/"
-	git submodule update --init "$(HOME)/foundry/anvil/base/.config/ranger/plugins/ranger-devicons2/"
+	git submodule update --init "$(HOME)/foundry/anvil/terminal/.config/ranger/plugins/ranger-devicons2/"
 
 ###############################################################################
 # Zimfw
